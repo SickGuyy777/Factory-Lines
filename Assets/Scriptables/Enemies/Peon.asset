@@ -9,12 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3831884475c0d4f4fae2da042cec60d1, type: 3}
-  m_Name: ArcherTower
+  m_Script: {fileID: 11500000, guid: 8f50cf208684094489da5179f2a76897, type: 3}
+  m_Name: Peon
   m_EditorClassIdentifier: 
-  towerType: Archer
-  prefab: {fileID: 8718686657932837374, guid: 981f7221725b94d44b3240a6fbf62e24, type: 3}
-  cost: 50
-  range: 12
-  fireRate: 0.8
-  damage: 5
+  enemyType: Peon
+  prefab: {fileID: 6129026183396527351, guid: 0fc3e617cdf1dbe4499e5bc378617848, type: 3}
+  movementSpeed: 5
+  life: 20
+  arriveRadius: 1
+  damage: 20

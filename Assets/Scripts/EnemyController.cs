@@ -2,11 +2,8 @@ using UnityEngine;
 
 public class EnemyController : MonoBehaviour
 {
+    public EnemyData myData;
     public Transform[] waypoints;
-    [SerializeField] float _movementSpeed;
-    [SerializeField] float _arriveRadius;
-
-    public float currentLife;
 
     Transform _currentWaypoint;
     int wayIndex = 0;
@@ -21,13 +18,17 @@ public class EnemyController : MonoBehaviour
         _currentWaypoint = waypoints[wayIndex];
 
         Vector3 dist = (_currentWaypoint.position - transform.position);
-        if (dist.magnitude < _arriveRadius)
+        if (dist.magnitude < myData.arriveRadius)
         {
             wayIndex++;
-            if (wayIndex >= waypoints.Length) EnemiesPool.Instance.ReturnObject(this.gameObject);
+            if (wayIndex >= waypoints.Length)
+            {
+                GameManager.Instance.spawnedEnemies.Remove(this);
+                EnemiesPool.Instance.ReturnObject(this.gameObject);
+            }
         }
 
-        transform.position += dist.normalized * _movementSpeed * Time.deltaTime;
+        transform.position += dist.normalized * myData.movementSpeed * Time.deltaTime;
         transform.right = dist.normalized;
     }
 

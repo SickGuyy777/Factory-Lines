@@ -3632,6 +3632,7 @@ MonoBehaviour:
   - {fileID: 1625526192}
   - {fileID: 2010226702}
   - {fileID: 1993659397}
+  spawnedEnemies: []
   availableTowers: []
   playerGold: 50
 --- !u!1 &1578762805

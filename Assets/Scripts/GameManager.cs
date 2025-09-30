@@ -1,5 +1,5 @@
 using System.Collections;
-using Unity.VisualScripting;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -9,13 +9,13 @@ public class GameManager : MonoBehaviour
     [Header("ENEMIES")]
     public Transform spawnPoint;
     public Transform[] path01;
+    public List<EnemyController> spawnedEnemies = new List<EnemyController>();
 
     [Header("TOWERS")]
     public TowerData[] availableTowers;
     public int playerGold = 50;
 
     TowerData _currentTowerSelected;
-    int _enemiesPerRound = 10;
 
     private void Awake()
     {
@@ -30,7 +30,7 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        StartCoroutine(SpawnEnemies());
+        StartCoroutine(SpawnEnemies(10));
     }
 
     private void Update()
@@ -47,14 +47,18 @@ public class GameManager : MonoBehaviour
             {
                 if (hit.transform.CompareTag("PlacePos") && playerGold >= _currentTowerSelected.cost)
                     SetTower(hit.transform);
-                else Debug.Log("Not enough gold");
+                else
+                {
+                    _currentTowerSelected = null;
+                    Debug.Log("Not enough money");
+                }
             }
         }
     }
 
-    public IEnumerator SpawnEnemies()
+    public IEnumerator SpawnEnemies(int enemiesPerRound)
     {
-        while(_enemiesPerRound > 0)
+        while(enemiesPerRound > 0)
         {
             GameObject enemy = EnemiesPool.Instance.GetObject();
 
@@ -63,7 +67,8 @@ public class GameManager : MonoBehaviour
 
             EnemyController controller = enemy.GetComponent<EnemyController>();
             controller.SetWaypoints(path01);
-            _enemiesPerRound--;
+            spawnedEnemies.Add(controller);
+            enemiesPerRound--;
 
             yield return new WaitForSeconds(2);
         }

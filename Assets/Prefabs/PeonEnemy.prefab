@@ -99,7 +99,7 @@ GameObject:
   - component: {fileID: 1647988073822740337}
   - component: {fileID: 8480173920882751029}
   - component: {fileID: 1262075861301865663}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: PeonEnemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -208,12 +208,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f24d6de657ccb94a9271ca15a67ccd4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  myData: {fileID: 11400000, guid: 5752c09a0d40c004dbc36a26c3aa2f65, type: 2}
   waypoints:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  _movementSpeed: 6
-  _arriveRadius: 1
-  currentLife: 0
